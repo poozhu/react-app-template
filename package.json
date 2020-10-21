@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "craco-less": "^1.17.0",
     "dva": "^2.4.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
@@ -28,6 +29,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "analyze": "craco build --analyze",
     "test": "craco test"
   },
   "eslintConfig": {
@@ -46,6 +48,8 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-prettier": "^3.1.4"
+    "eslint-plugin-prettier": "^3.1.4",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "webpack-bundle-analyzer": "^3.9.0"
   }
 }

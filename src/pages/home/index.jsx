@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Home extends Component {
     render() {
-        return <div>home Page</div>;
+        return <div>这是 home Page</div>;
     }
 }
 

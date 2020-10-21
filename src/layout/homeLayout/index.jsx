@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-// import { Route, Switch } from "dva/router";
+import routerRender from "@src/router/routerRender";
+import "./index.less";
 
 class HomeLayout extends Component {
     componentDidMount() {
         console.log(this.props);
     }
     render() {
+        const { routes } = this.props;
         return (
-            <div>
-                HomeLayout
-                <div>{this.props.children}</div>
+            <div className="home-layout">
+                <div className="home-page-header">这里是 HomeLayout common header</div>
+                {routerRender(routes)}
             </div>
         );
     }
