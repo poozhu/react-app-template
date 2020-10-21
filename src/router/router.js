@@ -1,22 +1,22 @@
 // import React from "react";
-import HomeLayout from "../layout/homeLayout";
-import Login from "../pages/login";
-import Home from "../pages/home";
-
+import { asynImport } from "@src/utils";
+function dynamicRouter(importComponent) {
+    return asynImport(importComponent, "loading");
+}
 const routes = [
     {
         path: "/",
         exact: true,
-        component: Login,
+        component: dynamicRouter(() => import("../pages/login")),
     },
     {
         path: "/home",
-        component: HomeLayout,
+        component: dynamicRouter(() => import("../layout/homeLayout")),
         routes: [
             {
                 path: "/home/index",
                 exact: true,
-                component: Home,
+                component: dynamicRouter(() => import("../pages/home")),
             },
         ],
     },
