@@ -1,7 +1,7 @@
-// import React from "react";
+import React from "react";
 import { asynImport } from "@src/utils";
 function dynamicRouter(importComponent) {
-    return asynImport(importComponent, "loading");
+    return asynImport(importComponent, () => <div>Loading...</div>);
 }
 const routes = [
     {

@@ -10,7 +10,7 @@ export default function routerRender(routes) {
                 return !routes ? (
                     <Route {...item} key={path} />
                 ) : (
-                    <Route path={path} render={() => <Component routes={routes} key={path} />}></Route>
+                    <Route path={path} key={path} render={() => <Component routes={routes} />}></Route>
                 );
             })}
         </Switch>
