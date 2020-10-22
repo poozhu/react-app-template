@@ -9,7 +9,7 @@ const app = dva();
 // app.use({});
 
 // 3. Model
-app.model(require("./example").default);
+app.model(require("./store/global").default);
 
 // 4. Router
 app.router(require("./App").RouterConfig);
