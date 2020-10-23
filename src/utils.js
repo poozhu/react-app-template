@@ -1,4 +1,5 @@
 import Loadable from "react-loadable";
+import { extend } from "umi-request";
 
 // 注册检查
 const modelNotExisted = (app, model) =>
@@ -23,3 +24,12 @@ export function asynImport(loading = null, importComponent, storeArr, app) {
         loading,
     });
 }
+
+// 具体配置可参考 https://github.com/umijs/umi-request
+export const request = extend({
+    // prefix: "/api/v1",
+    // timeout: 1000,
+    // headers: {
+    //     "Content-Type": "multipart/form-data",
+    // },
+});

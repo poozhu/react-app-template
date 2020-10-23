@@ -1,3 +1,10 @@
+import { request } from "@src/utils";
+
+let getListData = (param) => {
+    console.log(param);
+    return request.get("https://api.apiopen.top/musicRankingsDetails?type=1");
+};
+
 export default {
     namespace: "example",
 
@@ -6,21 +13,19 @@ export default {
     },
 
     subscriptions: {
-        setup({ dispatch, history }) {
-            // eslint-disable-line
-        },
+        setup({ dispatch, history }) {},
     },
 
     effects: {
-        *fetch({ payload }, { call, put }) {
-            // eslint-disable-line
-            yield put({ type: "save" });
+        *getListData({ payload }, { call, put }) {
+            let res = yield call(getListData, payload);
+            yield put({ type: "save", payload: res.code });
         },
     },
 
     reducers: {
-        save(state, action) {
-            return { ...state, ...action.payload };
+        save(state, { payload }) {
+            return { ...state, a: payload };
         },
     },
 };

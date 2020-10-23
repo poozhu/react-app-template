@@ -12,8 +12,16 @@ import logo from "@assets/logo.svg";
 class Home extends Component {
     componentDidMount() {
         console.log(this.props);
+
+        setTimeout(() => {
+            this.props.dispatch({
+                type: "example/getListData",
+                payload: "请求参数",
+            });
+        }, 5000);
     }
     render() {
+        const { a } = this.props.example;
         return (
             <div className="home-page">
                 <div>这是 home Page</div>
@@ -21,7 +29,7 @@ class Home extends Component {
                 <div>
                     <Link to="/"> go to login</Link>
                 </div>
-                <Commonbox>{this.props.example.a}</Commonbox>
+                <Commonbox>{a}</Commonbox>
                 <Commonbox>456</Commonbox>
             </div>
         );
