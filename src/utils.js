@@ -1,4 +1,5 @@
-import Loadable from "react-loadable";
+// import Loadable from "react-loadable";
+import loadable from "@loadable/component";
 import { extend } from "umi-request";
 
 // 注册检查
@@ -9,20 +10,14 @@ const modelNotExisted = (app, model) =>
 
 // 动态引入组件
 export function asynImport(loading = null, importComponent, storeArr, app) {
-    function routerCreate() {
-        storeArr &&
-            storeArr.forEach((model) => {
-                if (modelNotExisted(app, model)) {
-                    app.model(require(`@src/store/${model}`).default);
-                }
-            });
-        return importComponent();
-    }
+    storeArr &&
+        storeArr.forEach((model) => {
+            if (modelNotExisted(app, model)) {
+                app.model(require(`@src/store/${model}`).default);
+            }
+        });
 
-    return Loadable({
-        loader: () => routerCreate(),
-        loading,
-    });
+    return loadable(importComponent, { fallback: loading });
 }
 
 // 具体配置可参考 https://github.com/umijs/umi-request

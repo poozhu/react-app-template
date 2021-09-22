@@ -3,7 +3,7 @@ import { asynImport } from "@src/utils";
 
 // 动态路由加载以及 redux 注册
 function dynamicRouter(importComponent, storeArr, app) {
-    return asynImport(() => <div>Loading...</div>, importComponent, storeArr, app);
+    return asynImport(<div>Loading...</div>, importComponent, storeArr, app);
 }
 
 // 路由配置
