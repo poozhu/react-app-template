@@ -1,5 +1,5 @@
 const path = require("path");
-var ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const WebpackBar = require("webpackbar");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const CracoLessPlugin = require("craco-less");
 
@@ -12,7 +12,7 @@ module.exports = function ({ env }) {
         "@components": path.resolve(__dirname, "src/components"),
         "@assets": path.resolve(__dirname, "src/assets"),
     };
-    let webpackPlugins = [new ProgressBarPlugin()];
+    let webpackPlugins = [new WebpackBar()];
     needAnalyze && webpackPlugins.push(new BundleAnalyzerPlugin());
     let webpack = {
         alias: webpackAlias,
