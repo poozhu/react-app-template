@@ -1,39 +1,37 @@
-import React, { Component } from "react";
-import { Link } from "dva/router";
-import { connect } from "dva";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+import { effects } from "@store/example";
 
 import Commonbox from "@components/commonBox";
 
 import "./index.less";
 import logo from "@assets/logo.svg";
-@connect(({ example }) => ({
-    example,
-}))
-class Home extends Component {
-    componentDidMount() {
-        console.log(this.props);
+
+function Home() {
+    const { a } = useSelector((state) => state.example);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(a);
 
         setTimeout(() => {
-            this.props.dispatch({
-                type: "example/getListData",
-                payload: "请求参数",
-            });
+            dispatch(effects.getListData("请求参数"));
         }, 5000);
-    }
-    render() {
-        const { a } = this.props.example;
-        return (
-            <div className="home-page">
-                <div>这是 home Page</div>
-                <img src={logo} alt="" style={{ width: 100 }} />
-                <div>
-                    <Link to="/"> go to login</Link>
-                </div>
-                <Commonbox>{a}</Commonbox>
-                <Commonbox>456</Commonbox>
+    }, [dispatch]);
+
+    return (
+        <div className="home-page">
+            <div>这是 home Page</div>
+            <img src={logo} alt="" style={{ width: 100 }} />
+            <div>
+                <Link to="/"> go to login</Link>
             </div>
-        );
-    }
+            <Commonbox>{a}</Commonbox>
+            <Commonbox>456</Commonbox>
+        </div>
+    );
 }
 
 export default Home;

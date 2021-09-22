@@ -1,31 +1,28 @@
 import { request } from "@src/utils";
+import { createSlice } from "@reduxjs/toolkit";
 
 let getListData = (param) => {
     console.log(param);
     return request.get("https://api.apiopen.top/musicRankingsDetails?type=1");
 };
 
-export default {
-    namespace: "example",
+export const { reducer, actions } = createSlice({
+    name: "example",
 
-    state: {
+    initialState: {
         a: "redux 内的变量",
-    },
-
-    subscriptions: {
-        setup({ dispatch, history }) {},
-    },
-
-    effects: {
-        *getListData({ payload }, { call, put }) {
-            let res = yield call(getListData, payload);
-            yield put({ type: "save", payload: res.code });
-        },
     },
 
     reducers: {
         save(state, { payload }) {
             return { ...state, a: payload };
         },
+    },
+});
+
+export const effects = {
+    getListData: (params) => async (dispatch) => {
+        let res = await getListData(params);
+        dispatch(actions.save(res.code));
     },
 };

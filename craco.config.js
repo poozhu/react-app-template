@@ -11,6 +11,7 @@ module.exports = function ({ env }) {
         "@src": path.resolve(__dirname, "src/"),
         "@components": path.resolve(__dirname, "src/components"),
         "@assets": path.resolve(__dirname, "src/assets"),
+        "@store": path.resolve(__dirname, "src/store"),
     };
     let webpackPlugins = [new WebpackBar()];
     needAnalyze && webpackPlugins.push(new BundleAnalyzerPlugin());
